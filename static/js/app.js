@@ -773,11 +773,20 @@ function claimStudent() {
 function togglePasswordVisibility(inputId, btn) {
   const input = document.getElementById(inputId);
   if (!input) return;
+  const img = btn.querySelector('img') || btn;
   if (input.type === 'password') {
     input.type = 'text';
-    btn.innerHTML = '🙈';
+    img.style.opacity = '1.0';
+    img.style.filter = 'drop-shadow(0 0 3px #0D9488)';
     btn.setAttribute('title', 'Hide password');
   } else {
+    input.type = 'password';
+    img.style.opacity = '0.6';
+    img.style.filter = 'none';
+    btn.setAttribute('title', 'Show password');
+  }
+}
+ else {
     input.type = 'password';
     btn.innerHTML = '👁️';
     btn.setAttribute('title', 'Show password');
