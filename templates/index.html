@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AdaptiveAI — Personalized Learning Platform</title>
-  <link rel="stylesheet" href="../static/css/style.css?v=2.1?v=2.1" />
+  <link rel="stylesheet" href="./static/css/style.css?v=2.2" />
 </head>
 <body>
   <!-- Sidebar Navigation -->
@@ -89,12 +89,9 @@
                 </div>
                 <div class="form-group">
                   <label>Password</label>
-                  <div class="password-wrapper">
-                    <div style="position: relative; display: flex; align-items: center; width: 100%;">
+                  <div style="position: relative; display: flex; align-items: center; width: 100%;">
                     <input type="password" id="loginPassword" placeholder="Enter password" style="width: 100%; padding-right: 2.8rem;" />
                     <button type="button" class="btn-toggle-pwd" onclick="(function(b){ var i = document.getElementById('loginPassword'); if(i.type==='password'){ i.type='text'; b.innerHTML='🙈'; b.title='Hide password'; } else { i.type='password'; b.innerHTML='👁️'; b.title='Show password'; } })(this)" title="Show password" style="position: absolute; right: 0.75rem; background: none; border: none; cursor: pointer; font-size: 1.25rem; z-index: 10; padding: 0.2rem; user-select: none;">👁️</button>
-                  </div>
-                    <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('loginPassword', this)" title="Show password">👁️</button>
                   </div>
                 </div>
                 <button class="btn btn-primary btn-block" id="btnLogin" onclick="submitLogin()">Log in</button>
@@ -116,12 +113,9 @@
                 </div>
                 <div class="form-group">
                   <label>Pick a Password</label>
-                  <div class="password-wrapper">
-                    <div style="position: relative; display: flex; align-items: center; width: 100%;">
+                  <div style="position: relative; display: flex; align-items: center; width: 100%;">
                     <input type="password" id="joinPassword" placeholder="Choose password" style="width: 100%; padding-right: 2.8rem;" />
                     <button type="button" class="btn-toggle-pwd" onclick="(function(b){ var i = document.getElementById('joinPassword'); if(i.type==='password'){ i.type='text'; b.innerHTML='🙈'; b.title='Hide password'; } else { i.type='password'; b.innerHTML='👁️'; b.title='Show password'; } })(this)" title="Show password" style="position: absolute; right: 0.75rem; background: none; border: none; cursor: pointer; font-size: 1.25rem; z-index: 10; padding: 0.2rem; user-select: none;">👁️</button>
-                  </div>
-                    <button type="button" class="btn-toggle-pwd" onclick="togglePasswordVisibility('joinPassword', this)" title="Show password">👁️</button>
                   </div>
                 </div>
 
@@ -206,6 +200,6 @@
     </div>
   </main>
 
-  <script src="../static/js/app.js?v=2.1?v=2.1"></script>
+  <script src="./static/js/app.js?v=2.2"></script>
 </body>
 </html>
