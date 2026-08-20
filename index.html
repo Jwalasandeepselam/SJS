@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AdaptiveAI — Personalized Learning Platform</title>
+  <link rel="stylesheet" href="./static/css/style.css" />
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar" style="display: none;">
+    <div class="brand-logo">
+      <div class="brand-icon">🎮</div>
+      <div class="brand-text">
+        <h2>AdaptiveAI</h2>
+        <span>Personalized Learning</span>
+      </div>
+    </div>
+    <ul class="nav-links">
+      <li><a class="nav-item active" onclick="switchView('home')">🏠 Home</a></li>
+      <li><a class="nav-item" onclick="switchView('play')">🎮 Play / Diagnostic</a></li>
+      <li><a class="nav-item" onclick="switchView('skill_map')">🗺️ Skill Map</a></li>
+      <li><a class="nav-item" onclick="switchView('dashboard')">📊 Student Dashboard</a></li>
+      <li><a class="nav-item" onclick="switchView('leaderboard')">🏆 Leaderboard</a></li>
+      <li id="nav-teacher-li" style="display: none;"><a class="nav-item" onclick="switchView('teacher')">👩‍🏫 Teacher View</a></li>
+    </ul>
+    <div class="sidebar-footer">
+      <button class="btn btn-outline btn-block" onclick="logout()">Log out</button>
+    </div>
+  </aside>
+
+  <!-- Main Content Wrapper -->
+  <main class="main-wrapper">
+    <div class="top-nav" id="topNav" style="display: none;">
+      <div id="navUserBadge" style="font-weight: 700; color: var(--primary);"></div>
+      <button class="btn btn-outline" onclick="logout()" style="padding: 0.4rem 0.9rem; font-size: 0.85rem;">Log out</button>
+    </div>
+
+    <div class="content-container">
+      <!-- Unauthenticated View -->
+      <section id="view-auth">
+        <div class="grid-2">
+          <!-- Left: Description -->
+          <div>
+            <div class="hero">
+              <div class="kicker">IDP · PERSONALIZED LEARNING GAME</div>
+              <h1>AdaptiveAI</h1>
+              <p style="font-size: 1.05rem; line-height: 1.6; color: #334155;">
+                An intelligent, personalized learning platform for Python programming. 
+                Instead of fixed quizzes with static scores, AdaptiveAI continuously evaluates 
+                student behavior, builds real-time skill estimates, dynamically tunes challenge 
+                difficulty, and provides AI-guided staged hints for every learner.
+              </p>
+            </div>
+            <div class="card">
+              <h3>🌐 Python World Roadmap</h3>
+              <p style="color: #475569; margin-bottom: 0.75rem;">Progress through interconnected skill nodes as mastery grows:</p>
+              <div style="font-family: 'Fira Code', monospace; background: #F8FAFC; padding: 0.75rem 1rem; border-radius: 10px; border: 1px solid #E2E8F0; color: #0D9488; font-weight: 600;">
+                START ➔ Variables ➔ Conditions ➔ Loops ➔ Functions ➔ OOP ➔ File Handling
+              </div>
+            </div>
+            <div class="card">
+              <h3>⚡ Key Features</h3>
+              <ul style="color: #334155; line-height: 1.8; padding-left: 1.2rem;">
+                <li><b>Adaptive Pathing:</b> Question difficulty evolves dynamically from live mastery.</li>
+                <li><b>Staged AI Tutor Hints:</b> Hints scale with your attempt struggle before answer reveal.</li>
+                <li><b>Gamified Progression:</b> Earn XP, maintain daily streaks, and unlock badges.</li>
+                <li><b>Teacher Clarity Portal:</b> Observe student IDs with fraud prevention verification.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Right: Credentials & Verification -->
+          <div>
+            <div class="card">
+              <div class="tab-header">
+                <button class="tab-btn active" id="tabLoginBtn" onclick="switchAuthTab('login')">Log in</button>
+                <button class="tab-btn" id="tabJoinBtn" onclick="switchAuthTab('join')">Create Account</button>
+              </div>
+
+              <!-- On-Screen Alert Box -->
+              <div id="authAlertBox" style="display: none; margin-bottom: 1rem;"></div>
+
+              <!-- Login Form -->
+              <div id="tab-login-form">
+                <div class="form-group">
+                  <label>Username</label>
+                  <input type="text" id="loginUsername" placeholder="Enter username" />
+                </div>
+                <div class="form-group">
+                  <label>Password</label>
+                  <input type="password" id="loginPassword" placeholder="Enter password" />
+                </div>
+                <button class="btn btn-primary btn-block" id="btnLogin" onclick="submitLogin()">Log in</button>
+              </div>
+
+              <!-- Register Form -->
+              <div id="tab-join-form" style="display: none;">
+                <div class="form-group">
+                  <label>Account Role</label>
+                  <select id="joinRole">
+                    <option value="student">Student</option>
+                    <option value="teacher">Teacher</option>
+                    <option value="other">Other / Educator</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Pick a Username</label>
+                  <input type="text" id="joinUsername" placeholder="Choose username" />
+                </div>
+                <div class="form-group">
+                  <label>Pick a Password</label>
+                  <input type="password" id="joinPassword" placeholder="Choose password" />
+                </div>
+
+                <div style="border-top: 1px solid var(--border); padding-top: 1rem; margin-top: 1rem;">
+                  <label style="font-weight: 700; font-size: 0.9rem; margin-bottom: 0.5rem; display: block;">🛡️ Identity Verification (Fraud Prevention)</label>
+                  <div style="display: flex; gap: 1rem; margin-bottom: 0.75rem;">
+                    <label><input type="radio" name="verifyMethod" value="reg_num" checked onchange="toggleVerifyMethod()" /> University Registration No.</label>
+                    <label><input type="radio" name="verifyMethod" value="id_card" onchange="toggleVerifyMethod()" /> Upload ID Card</label>
+                  </div>
+                  <div id="verifyRegBox" class="form-group">
+                    <input type="text" id="joinRegNum" placeholder="e.g. REG-2024-99812" />
+                  </div>
+                  <div id="verifyCardBox" class="form-group" style="display: none;">
+                    <input type="file" id="joinIdCardFile" accept="image/*,application/pdf" />
+                  </div>
+                </div>
+
+                <button class="btn btn-primary btn-block" id="btnRegister" onclick="submitRegister()">Create Account</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Authenticated Views Container -->
+      <section id="view-app" style="display: none;">
+        <!-- HUD Header -->
+        <div id="userHud" class="hud"></div>
+
+        <!-- View 1: Home Dashboard -->
+        <div id="subview-home">
+          <div class="hero">
+            <div class="kicker" id="homeKicker">WELCOME BACK</div>
+            <h1 id="homeGreeting">Hello! 👋</h1>
+            <p style="color: #334155;">Your personalized Python learning arena is ready. Select an option below or use the sidebar navigation to jump into action.</p>
+          </div>
+          <div class="grid-cols-2" id="homeCardsGrid"></div>
+        </div>
+
+        <!-- View 2: Play Mode & AI Doubt Chatbot -->
+        <div id="subview-play" style="display: none;">
+          <h2>🎮 Play Mode</h2>
+          <div id="playQuestionContainer"></div>
+        </div>
+
+        <!-- View 3: Skill Map -->
+        <div id="subview-skill_map" style="display: none;">
+          <h2>🗺️ Python World Skill Tree</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Nodes unlock after reaching mastery threshold in preceding topics.</p>
+          <div id="skillMapNodes"></div>
+        </div>
+
+        <!-- View 4: Student Dashboard -->
+        <div id="subview-dashboard" style="display: none;">
+          <h2>📊 Student Analytics Dashboard</h2>
+          <div id="studentDashboardContent"></div>
+        </div>
+
+        <!-- View 5: Leaderboard -->
+        <div id="subview-leaderboard" style="display: none;">
+          <h2>🏆 Arena Leaderboard</h2>
+          <div id="leaderboardList" style="margin-top: 1rem;"></div>
+        </div>
+
+        <!-- View 6: Teacher View -->
+        <div id="subview-teacher" style="display: none;">
+          <h2>👩‍🏫 Teacher Dashboard & Student Performance Analyzer</h2>
+          <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Observe student progress via unique IDs, evaluate performance tiers, and intervene where support is needed.</p>
+
+          <div class="card">
+            <h3>📌 Add Student to Observation</h3>
+            <div style="display: flex; gap: 1rem;">
+              <input type="text" id="teacherClaimInput" placeholder="Enter Unique Student ID (e.g. STU-A1B2C3)" style="flex-grow: 1;" />
+              <button class="btn btn-primary" onclick="claimStudent()">Add to Observation ➔</button>
+            </div>
+            <div id="claimFeedback" style="margin-top: 0.75rem;"></div>
+          </div>
+
+          <div id="teacherAnalyticsContent"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="./static/js/app.js"></script>
+</body>
+</html>

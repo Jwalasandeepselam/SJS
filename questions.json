@@ -1,0 +1,452 @@
+{
+  "topics": [
+    {"id": "variables", "name": "Variables", "world": "Python World", "unlock_after": null},
+    {"id": "conditions", "name": "Conditions", "world": "Python World", "unlock_after": "variables"},
+    {"id": "loops", "name": "Loops", "world": "Python World", "unlock_after": "conditions"},
+    {"id": "functions", "name": "Functions", "world": "Python World", "unlock_after": "loops"},
+    {"id": "oop", "name": "OOP", "world": "Python World", "unlock_after": "functions"},
+    {"id": "files", "name": "File Handling", "world": "Python World", "unlock_after": "oop"}
+  ],
+  "questions": [
+    {
+      "id": "var-b-1",
+      "topic": "variables",
+      "difficulty": "beginner",
+      "prompt": "What does this print?\n\n```python\nx = 5\nprint(type(x))\n```",
+      "choices": ["<class 'int'>", "<class 'str'>", "5", "int()"],
+      "answer": 0,
+      "hints": [
+        "Look at the value assigned to x.",
+        "5 without quotes is a whole number.",
+        "type() reports the Python type, not the value."
+      ],
+      "explain": "5 is an integer, so type(x) is <class 'int'>."
+    },
+    {
+      "id": "var-b-2",
+      "topic": "variables",
+      "difficulty": "beginner",
+      "prompt": "Which assignment creates a string?",
+      "choices": ["n = 10", "n = 10.0", "n = \"10\"", "n = True"],
+      "answer": 2,
+      "hints": [
+        "Strings are text.",
+        "Quotes wrap text in Python.",
+        "\"10\" is text that looks like a number."
+      ],
+      "explain": "Quotes make \"10\" a str. 10 is int, 10.0 is float."
+    },
+    {
+      "id": "var-i-1",
+      "topic": "variables",
+      "difficulty": "intermediate",
+      "prompt": "After these lines, what is y?\n\n```python\nx = 3\ny = x\nx = 8\n```",
+      "choices": ["3", "8", "11", "Error"],
+      "answer": 0,
+      "hints": [
+        "Integers are copied by value here.",
+        "y = x copies the current value of x.",
+        "Changing x later does not rewrite y."
+      ],
+      "explain": "y stored 3. Rebinding x to 8 does not change y."
+    },
+    {
+      "id": "var-i-2",
+      "topic": "variables",
+      "difficulty": "intermediate",
+      "prompt": "What is the result of `bool(0)`?",
+      "choices": ["True", "False", "0", "Error"],
+      "answer": 1,
+      "hints": [
+        "Some values are \"falsy\".",
+        "Empty and zero-like values become False.",
+        "0 is falsy, so bool(0) is False."
+      ],
+      "explain": "0, 0.0, \"\", [], and None are falsy."
+    },
+    {
+      "id": "var-a-1",
+      "topic": "variables",
+      "difficulty": "advanced",
+      "prompt": "What does this print?\n\n```python\na = [1]\nb = a\na.append(2)\nprint(b)\n```",
+      "choices": ["[1]", "[1, 2]", "[2]", "Error"],
+      "answer": 1,
+      "hints": [
+        "Lists are mutable objects.",
+        "b = a copies the reference, not a new list.",
+        "append changes the same list both names point to."
+      ],
+      "explain": "a and b refer to one list, so append is visible through b."
+    },
+    {
+      "id": "cond-b-1",
+      "topic": "conditions",
+      "difficulty": "beginner",
+      "prompt": "Which operator means \"equal to\" in Python?",
+      "choices": ["=", "==", "===", "eq"],
+      "answer": 1,
+      "hints": [
+        "= is assignment.",
+        "Comparisons use a doubled equals.",
+        "Use == to test equality."
+      ],
+      "explain": "= assigns. == compares. Python has no ===."
+    },
+    {
+      "id": "cond-b-2",
+      "topic": "conditions",
+      "difficulty": "beginner",
+      "prompt": "What does this print if n = 4?\n\n```python\nif n % 2 == 0:\n    print(\"even\")\nelse:\n    print(\"odd\")\n```",
+      "choices": ["even", "odd", "4", "nothing"],
+      "answer": 0,
+      "hints": [
+        "% is remainder.",
+        "Even numbers have remainder 0 when divided by 2.",
+        "4 % 2 == 0 is True."
+      ],
+      "explain": "4 is even, so the if branch runs."
+    },
+    {
+      "id": "cond-i-1",
+      "topic": "conditions",
+      "difficulty": "intermediate",
+      "prompt": "What is printed?\n\n```python\nx = 7\nif x > 10:\n    print(\"A\")\nelif x > 5:\n    print(\"B\")\nelse:\n    print(\"C\")\n```",
+      "choices": ["A", "B", "C", "A then B"],
+      "answer": 1,
+      "hints": [
+        "elif is only tried if the if failed.",
+        "7 > 10 is False.",
+        "7 > 5 is True, so \"B\" prints and else is skipped."
+      ],
+      "explain": "First condition fails, second succeeds. Only one branch runs."
+    },
+    {
+      "id": "cond-i-2",
+      "topic": "conditions",
+      "difficulty": "intermediate",
+      "prompt": "Which expression is True?",
+      "choices": ["True and False", "False or False", "not True", "True or False"],
+      "answer": 3,
+      "hints": [
+        "and needs both True.",
+        "or needs at least one True.",
+        "True or False is True."
+      ],
+      "explain": "or is True if any operand is True."
+    },
+    {
+      "id": "cond-a-1",
+      "topic": "conditions",
+      "difficulty": "advanced",
+      "prompt": "What does this print?\n\n```python\nprint(\"yes\" if 0 else \"no\")\n```",
+      "choices": ["yes", "no", "0", "Error"],
+      "answer": 1,
+      "hints": [
+        "This is a ternary (conditional expression).",
+        "The condition is 0.",
+        "0 is falsy, so the else value is chosen."
+      ],
+      "explain": "value_if_true if condition else value_if_false. 0 is falsy → \"no\"."
+    },
+    {
+      "id": "loop-b-1",
+      "topic": "loops",
+      "difficulty": "beginner",
+      "prompt": "How many times does this print Hello?\n\n```python\nfor i in range(3):\n    print(\"Hello\")\n```",
+      "choices": ["2", "3", "4", "Infinite"],
+      "answer": 1,
+      "hints": [
+        "range(n) goes 0, 1, ..., n-1.",
+        "That is n values.",
+        "range(3) → 0, 1, 2."
+      ],
+      "explain": "range(3) yields three integers, so three prints."
+    },
+    {
+      "id": "loop-b-2",
+      "topic": "loops",
+      "difficulty": "beginner",
+      "prompt": "What is the last number printed?\n\n```python\nfor i in range(1, 4):\n    print(i)\n```",
+      "choices": ["1", "3", "4", "0"],
+      "answer": 1,
+      "hints": [
+        "range(start, stop) excludes stop.",
+        "It runs while i < 4.",
+        "Values are 1, 2, 3."
+      ],
+      "explain": "The stop bound is exclusive, so 4 is not printed."
+    },
+    {
+      "id": "loop-i-1",
+      "topic": "loops",
+      "difficulty": "intermediate",
+      "prompt": "What is s after this loop?\n\n```python\ns = 0\nfor n in [2, 4, 6]:\n    s += n\n```",
+      "choices": ["6", "12", "24", "0"],
+      "answer": 1,
+      "hints": [
+        "+= adds into s.",
+        "Add each list item in order.",
+        "2+4+6 = 12."
+      ],
+      "explain": "The loop accumulates the list sum: 12."
+    },
+    {
+      "id": "loop-i-2",
+      "topic": "loops",
+      "difficulty": "intermediate",
+      "prompt": "Which loop is most likely infinite?",
+      "choices": [
+        "for i in range(10): pass",
+        "while True: break",
+        "i = 0\\nwhile i < 5:\\n    i += 1",
+        "i = 0\\nwhile i < 5:\\n    print(i)"
+      ],
+      "answer": 3,
+      "hints": [
+        "An infinite loop never reaches a false condition.",
+        "If i never changes, i < 5 stays True.",
+        "The last option prints i forever."
+      ],
+      "explain": "Without i += 1, i stays 0 and the while never ends."
+    },
+    {
+      "id": "loop-a-1",
+      "topic": "loops",
+      "difficulty": "advanced",
+      "prompt": "What does this print?\n\n```python\nfor i in range(5):\n    if i == 2:\n        continue\n    if i == 4:\n        break\n    print(i, end=\"\")\n```",
+      "choices": ["01234", "013", "0134", "0123"],
+      "answer": 1,
+      "hints": [
+        "continue skips the rest of this iteration.",
+        "break leaves the loop entirely.",
+        "2 is skipped; 4 never prints; output is 013."
+      ],
+      "explain": "Prints 0,1; skips 2; prints 3; breaks at 4."
+    },
+    {
+      "id": "fn-b-1",
+      "topic": "functions",
+      "difficulty": "beginner",
+      "prompt": "How do you define a function named greet?",
+      "choices": ["function greet():", "def greet():", "func greet():", "define greet():"],
+      "answer": 1,
+      "hints": [
+        "Python uses a short keyword.",
+        "It is def, not function.",
+        "def greet(): is the header."
+      ],
+      "explain": "Python function definitions start with def."
+    },
+    {
+      "id": "fn-b-2",
+      "topic": "functions",
+      "difficulty": "beginner",
+      "prompt": "What does this return?\n\n```python\ndef add(a, b):\n    return a + b\nprint(add(2, 3))\n```",
+      "choices": ["23", "5", "None", "Error"],
+      "answer": 1,
+      "hints": [
+        "return sends a value back to the caller.",
+        "+ on ints adds numerically.",
+        "2 + 3 is 5."
+      ],
+      "explain": "add returns the integer sum 5."
+    },
+    {
+      "id": "fn-i-1",
+      "topic": "functions",
+      "difficulty": "intermediate",
+      "prompt": "What is printed?\n\n```python\ndef f(x):\n    x = x + 1\n    return x\nn = 4\nf(n)\nprint(n)\n```",
+      "choices": ["4", "5", "None", "Error"],
+      "answer": 0,
+      "hints": [
+        "The return value is ignored.",
+        "n is an int passed by assignment.",
+        "Rebinding x inside f does not change n."
+      ],
+      "explain": "f(n) returns 5 but n stays 4 because the result is unused."
+    },
+    {
+      "id": "fn-i-2",
+      "topic": "functions",
+      "difficulty": "intermediate",
+      "prompt": "What is the default return value of a function with no return?",
+      "choices": ["0", "False", "None", "Error"],
+      "answer": 2,
+      "hints": [
+        "Every function returns something.",
+        "If you omit return, Python still returns an object.",
+        "That object is None."
+      ],
+      "explain": "Missing return is the same as return None."
+    },
+    {
+      "id": "fn-a-1",
+      "topic": "functions",
+      "difficulty": "advanced",
+      "prompt": "What does this print?\n\n```python\ndef f(xs=[]):\n    xs.append(1)\n    return xs\nprint(f(), f())\n```",
+      "choices": ["[1] [1]", "[1] [1, 1]", "[1, 1] [1, 1]", "Error"],
+      "answer": 1,
+      "hints": [
+        "Default arguments are evaluated once.",
+        "The same list is reused across calls.",
+        "First call [1], second call [1, 1]."
+      ],
+      "explain": "Mutable defaults persist. Both calls share one list."
+    },
+    {
+      "id": "oop-b-1",
+      "topic": "oop",
+      "difficulty": "beginner",
+      "prompt": "Which keyword starts a class definition?",
+      "choices": ["object", "class", "struct", "def"],
+      "answer": 1,
+      "hints": [
+        "Functions use def.",
+        "Types/blueprints use another keyword.",
+        "class Name: is the header."
+      ],
+      "explain": "Python classes are defined with class."
+    },
+    {
+      "id": "oop-b-2",
+      "topic": "oop",
+      "difficulty": "beginner",
+      "prompt": "What is the first parameter of an instance method usually called?",
+      "choices": ["this", "self", "cls", "me"],
+      "answer": 1,
+      "hints": [
+        "It refers to the instance.",
+        "Python convention is not this.",
+        "Use self."
+      ],
+      "explain": "Instance methods take self as the first parameter by convention."
+    },
+    {
+      "id": "oop-i-1",
+      "topic": "oop",
+      "difficulty": "intermediate",
+      "prompt": "What does this print?\n\n```python\nclass P:\n    def __init__(self, n):\n        self.n = n\nprint(P(3).n)\n```",
+      "choices": ["P", "3", "n", "Error"],
+      "answer": 1,
+      "hints": [
+        "__init__ runs when you construct P(3).",
+        "self.n stores the argument.",
+        "P(3).n is 3."
+      ],
+      "explain": "The constructor saves n on the instance."
+    },
+    {
+      "id": "oop-i-2",
+      "topic": "oop",
+      "difficulty": "intermediate",
+      "prompt": "Inheritance in Python is written as:",
+      "choices": ["class Dog extends Animal:", "class Dog(Animal):", "class Dog implements Animal:", "class Dog <- Animal:"],
+      "answer": 1,
+      "hints": [
+        "Python lists the parent in parentheses.",
+        "Not Java's extends.",
+        "class Dog(Animal):"
+      ],
+      "explain": "Subclass syntax is class Child(Parent):"
+    },
+    {
+      "id": "oop-a-1",
+      "topic": "oop",
+      "difficulty": "advanced",
+      "prompt": "What is printed?\n\n```python\nclass A:\n    x = 1\na = A(); b = A()\na.x = 2\nprint(A.x, b.x, a.x)\n```",
+      "choices": ["2 2 2", "1 1 2", "1 2 2", "2 1 2"],
+      "answer": 1,
+      "hints": [
+        "x on the class is shared until an instance overrides it.",
+        "a.x = 2 creates an instance attribute on a only.",
+        "A.x and b.x stay 1; a.x is 2."
+      ],
+      "explain": "Assignment on a shadows the class attribute for a only."
+    },
+    {
+      "id": "file-b-1",
+      "topic": "files",
+      "difficulty": "beginner",
+      "prompt": "Which mode opens a file for reading text?",
+      "choices": ["\"w\"", "\"r\"", "\"a\"", "\"rb\""],
+      "answer": 1,
+      "hints": [
+        "w writes (and truncates).",
+        "a appends.",
+        "r reads."
+      ],
+      "explain": "\"r\" is read text. \"rb\" is read bytes."
+    },
+    {
+      "id": "file-b-2",
+      "topic": "files",
+      "difficulty": "beginner",
+      "prompt": "Why is `with open(path) as f:` recommended?",
+      "choices": [
+        "It makes the file faster",
+        "It closes the file automatically",
+        "It encrypts the file",
+        "It skips errors"
+      ],
+      "answer": 1,
+      "hints": [
+        "Files should be closed after use.",
+        "with is a context manager.",
+        "The file closes even if an error happens inside the block."
+      ],
+      "explain": "The with statement guarantees close()."
+    },
+    {
+      "id": "file-i-1",
+      "topic": "files",
+      "difficulty": "intermediate",
+      "prompt": "What does f.read() return for a text file?",
+      "choices": ["A list of lines", "A str", "bytes", "An int"],
+      "answer": 1,
+      "hints": [
+        "Text mode vs binary mode matters.",
+        "read() with no size reads everything.",
+        "In text mode the result is a str."
+      ],
+      "explain": "Text-mode read() returns the whole contents as str."
+    },
+    {
+      "id": "file-i-2",
+      "topic": "files",
+      "difficulty": "intermediate",
+      "prompt": "Which call writes a line with a newline?",
+      "choices": [
+        "f.write(\"hi\")",
+        "f.write(\"hi\\n\")",
+        "f.read(\"hi\\n\")",
+        "print(f, \"hi\")"
+      ],
+      "answer": 1,
+      "hints": [
+        "write does not add a newline for you.",
+        "Include \\n in the string.",
+        "f.write(\"hi\\n\")"
+      ],
+      "explain": "write() dumps exactly the string you pass."
+    },
+    {
+      "id": "file-a-1",
+      "topic": "files",
+      "difficulty": "advanced",
+      "prompt": "What happens if you `open(path, \"w\")` on an existing file?",
+      "choices": [
+        "It appends",
+        "It fails",
+        "It truncates (erases) the file",
+        "It opens read-only"
+      ],
+      "answer": 2,
+      "hints": [
+        "w means write.",
+        "Write mode starts from an empty file.",
+        "Existing contents are truncated."
+      ],
+      "explain": "Mode \"w\" creates or truncates. Use \"a\" to append."
+    }
+  ]
+}
