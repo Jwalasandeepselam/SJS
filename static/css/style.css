@@ -410,3 +410,38 @@ input:focus, select:focus {
   .grid-2, .grid-cols-4, .grid-cols-3, .grid-cols-2 { grid-template-columns: 1fr; }
   .content-container { padding: 1.25rem; }
 }
+
+/* Password toggle eye icon styling */
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 2.8rem !important;
+}
+
+.btn-toggle-pwd {
+  position: absolute;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  user-select: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  z-index: 2;
+}
+
+.btn-toggle-pwd:hover {
+  transform: scale(1.15);
+  opacity: 0.85;
+}
